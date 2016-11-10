@@ -62,9 +62,11 @@ npm install @chickendinosaur/url-parser
 const UrlParser = require('@chickendinosaur/url-parser');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
-var parsedURL = UrlParser.parse(url, true);
+console.log(UrlParser.parse(url, true));
 
-// parsedURL
+/*
+Output
+
 {
 	protocol: 'http:',
 	ashes: true,
@@ -79,6 +81,7 @@ var parsedURL = UrlParser.parse(url, true);
 	th: '/a/b/c/?item=1&name=joe',
 	ef: 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation'
 }
+*/
 ```
 ---  
 
