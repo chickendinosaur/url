@@ -60,10 +60,10 @@ npm install @chickendinosaur/url-parse
 ## Usage
 
 ```javascript
-const urlParse = require('@chickendinosaur/url-parse');
+const parseURL = require('@chickendinosaur/url-parse');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
-console.log(urlParse(url, true));
+console.log(parseURL(url, true));
 
 // Output
 
