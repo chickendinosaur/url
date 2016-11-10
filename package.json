@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/url-parser",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "URL parser to mimic node's 'url'.parse with minimal overhead and max performance.",
   "main": "lib/url-parser.js",
   "files": [
@@ -13,8 +13,7 @@
     "benchmark-url": "node benchmark/url.js",
     "build": "npm run clean && babel src --out-dir lib",
     "clean": "rm -rf lib/*",
-    "prepubish": "npm run test",
-    "publish": "npm publish --access=public",
+    "prepublish": "npm run test",
     "test": "npm run build && tape test/unit/**/*.js | tap-spec"
   },
   "author": {
