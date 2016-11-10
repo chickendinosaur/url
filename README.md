@@ -32,7 +32,10 @@ Note: Due to dealing with fast-url-parser and 'url' having dependencies, browser
 
 ## Performance  
 
-Path used: http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation
+Path used: 
+```javascript
+var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
+```
 
 ### @chickendinosaur/url-parser  
 #### .parse(url, false) x 1,472,897 ops/sec  
