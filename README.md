@@ -66,7 +66,7 @@ var parsedURL = UrlParser.parse(url, true);
 
 // Output
 {
-	otocol: 'http:',
+	protocol: 'http:',
 	ashes: true,
 	th: 'joe:smith',
 	st: 'mail.google.com:80',
