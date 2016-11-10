@@ -6,6 +6,7 @@ const mockUrls = require('../../mocks/urls');
 
 test('parse - full url \w query parsing', function (assert) {
 	let urlObj = urlParser.parse(mockUrls.full, true);
+	console.log(urlObj);
 
 	var queryObjMirror = JSON.stringify({
 		item: '1',

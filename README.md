@@ -58,13 +58,27 @@ npm install @chickendinosaur/url-parser
 
 ## Usage
 
-## UrlParser.parse
 ```javascript
 const UrlParser = require('@chickendinosaur/url-parser');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
-
 var parsedURL = UrlParser.parse(url, true);
+
+// Output
+{
+	otocol: 'http:',
+	ashes: true,
+	th: 'joe:smith',
+	st: 'mail.google.com:80',
+	rt: '80',
+	stname: 'mail.google.com',
+	sh: '#pageLocation',
+	arch: '?item=1&name=joe',
+	ery: { item: '1', name: 'joe' },
+	thname: '/a/b/c/',
+	th: '/a/b/c/?item=1&name=joe',
+	ef: 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation'
+}
 ```
 ---  
 
