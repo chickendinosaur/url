@@ -69,17 +69,17 @@ Output
 
 {
 	protocol: 'http:',
-	ashes: true,
-	th: 'joe:smith',
-	st: 'mail.google.com:80',
-	rt: '80',
-	stname: 'mail.google.com',
-	sh: '#pageLocation',
-	arch: '?item=1&name=joe',
-	ery: { item: '1', name: 'joe' },
-	thname: '/a/b/c/',
-	th: '/a/b/c/?item=1&name=joe',
-	ef: 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation'
+	slashes: true,
+	auth: 'joe:smith',
+	host: 'mail.google.com:80',
+	port: '80',
+	hostname: 'mail.google.com',
+	hash: '#pageLocation',
+	search: '?item=1&name=joe',
+	query: { item: '1', name: 'joe' },
+	pathname: '/a/b/c/',
+	path: '/a/b/c/?item=1&name=joe',
+	href: 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation'
 }
 */
 ```
