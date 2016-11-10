@@ -1,6 +1,6 @@
 Url parsing utility meant to mimic node's parse() method from the 'url' package. Made to with the browser in mind so it takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. Made this to be used with my routing solutions.  
 
-[Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html#url_url_parse_urlstring_parsequerystring_slashesdenotehost)
+[Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html)
 
 ## TODO  
 
@@ -16,35 +16,35 @@ Url parsing utility meant to mimic node's parse() method from the 'url' package.
 
 Note: Due to dealing with fast-url-parser and 'url' having dependencies, browserify was use which adds overhead to the results. However, '@chickendinosaur/url-parser' has no dependencies so I've listed both result with and without being browserified. Also, the size will grow a little more once the other two method are added but nothing in comparison to the other offerings.
 
-#### @chickendinosaur/url-parser  
-### minified - 1685 bytes  
-### minified + gzipped - 772 bytes  
-### minified - 1222 (without browserify) bytes  
-### minified + gzipped (without browserify) - 548 bytes  
+### @chickendinosaur/url-parser  
+#### minified - 1685 bytes  
+#### minified + gzipped - 772 bytes  
+#### minified (without browserify) - 1222 bytes  
+#### minified + gzipped (without browserify) - 548 bytes  
 
-#### url  
-### minified - 12685 bytes  
-### minified + gzipped - 4979 bytes  
+### url  
+#### minified - 12685 bytes  
+#### minified + gzipped - 4979 bytes  
 
-#### fast-url-parser  
-### minified - 15783 bytes  
-### minified + gzipped - 5767 bytes  
+### fast-url-parser  
+#### minified - 15783 bytes  
+#### minified + gzipped - 5767 bytes  
 
 ## Performance  
 
 Path used: http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation
 
-#### @chickendinosaur/url-parser  
-url-parser.parse(url, false) x 1,472,897 ops/sec  
-url-parser.parse(url, true) x 705,511 ops/sec  
+### @chickendinosaur/url-parser  
+#### .parse(url, false) x 1,472,897 ops/sec  
+#### .parse(url, true) x 705,511 ops/sec  
 
-#### url  
-.parse(url, false) x 193,906 ops/sec ±0.57%  
-.parse(url, true) x 146,577 ops/sec ±1.03%  
+### url  
+#### .parse(url, false) x 193,906 ops/sec ±0.57%  
+#### .parse(url, true) x 146,577 ops/sec ±1.03%  
 
-#### fast-url-parser  
-.parse(url, false) x 1,381,672 ops/sec  
-.parse(url, true) x 593,819 ops/sec  
+### fast-url-parser  
+#### .parse(url, false) x 1,381,672 ops/sec  
+#### .parse(url, true) x 593,819 ops/sec  
 
 ---  
 
