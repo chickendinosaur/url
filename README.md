@@ -1,4 +1,4 @@
-Url parsing utility meant to mimic node's parse() method from the 'url' package. Made to with the browser in mind so it takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. Made this to be used with my routing solutions.  
+Url parsing utility meant to mimic node's parse() method from the 'url' package. It takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. Made this to be used in browser routing solutions.  
 
 [Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html)
 
