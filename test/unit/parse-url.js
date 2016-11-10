@@ -1,17 +1,10 @@
 'use strict';
 
 const test = require('tape');
-const parseURL = require('../../lib/url-parse');
+const parseURL = require('../../lib/parse-url');
 const mockUrls = require('../../mocks/urls');
-const url = require('url');
 
-test('parse - full url \w query parsing', function (assert) {
-	var testURL = 'u:p@a.b.c/?';
-	console.log('url');
-	console.log(url.parse(testURL, false, true));
-	console.log('parseURL');
-	console.log(parseURL(testURL, false, true));
-
+test('full url \w query parsing', function (assert) {
 	let urlObj = parseURL(mockUrls.full, true);
 
 	var queryObjMirror = JSON.stringify({
@@ -32,7 +25,7 @@ test('parse - full url \w query parsing', function (assert) {
 	assert.end();
 });
 
-test('parse - full url \wo query parsing', function (assert) {
+test('full url \wo query parsing', function (assert) {
 	let urlObj = parseURL(mockUrls.full, false);
 
 	assert.equal(urlObj.query, 'item=1&name=joe', 'url1-query');
@@ -40,7 +33,7 @@ test('parse - full url \wo query parsing', function (assert) {
 	assert.end();
 });
 
-test('parse - no path', function (assert) {
+test('no path', function (assert) {
 	let urlObj = parseURL(mockUrls.noPath, false);
 
 	assert.equal(urlObj.href, mockUrls.noPath, 'url1-href');
@@ -56,7 +49,7 @@ test('parse - no path', function (assert) {
 	assert.end();
 });
 
-test('parse - no hash', function (assert) {
+test('no hash', function (assert) {
 	let urlObj = parseURL(mockUrls.noHash, false);
 
 	assert.equal(urlObj.href, mockUrls.noHash, 'url1-href');

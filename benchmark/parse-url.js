@@ -2,7 +2,7 @@ require('lodash');
 Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
-const parseURL = require('../lib/url-parse');
+const parseURL = require('../lib/parse-url');
 const mockURLs = require('../mocks/urls');
 
 /*
