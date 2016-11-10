@@ -1,12 +1,10 @@
-Url parsing utility meant to mimic node's parse() method from the 'url' package. It takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. Made this to be used in browser routing solutions.  
+Url parsing method meant to mimic node's parse() method from the 'url' package. It takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. Made this to be used in browser routing solutions.  
 
 [Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html)
 
 ## TODO  
 
 * Replicate 3rd parameter @param slashesDenoteHost {Boolean}
-* Create format() method.
-* Create resolve() method.
 
 ---  
 
@@ -14,9 +12,9 @@ Url parsing utility meant to mimic node's parse() method from the 'url' package.
 
 ## Overhead  
 
-Note: Due to dealing with fast-url-parser and 'url' having dependencies, browserify was use which adds overhead to the results. However, '@chickendinosaur/url-parser' has no dependencies so I've listed both result with and without being browserified. Also, the size will grow a little more once the other two method are added but nothing in comparison to the other offerings.
+Note: Due to dealing with fast-url-parser and 'url' having dependencies, browserify was use which adds overhead to the results. However, '@chickendinosaur/url-parser' has no dependencies so I've listed both result with and without being browserified. Of course this package does not include a format() or resolve() method but those are very minimal to implement as well and will be done in seperate packages if I need them.
 
-### @chickendinosaur/url-parser  
+### @chickendinosaur/url-parse  
 #### minified - 1685 bytes  
 #### minified + gzipped - 772 bytes  
 #### minified (without browserify) - 1222 bytes  
@@ -37,17 +35,17 @@ URL used:
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
 
-### @chickendinosaur/url-parser  
-#### .parse(url, false) x 1,472,897 ops/sec  
-#### .parse(url, true) x 705,511 ops/sec  
+### @chickendinosaur/url-parse  
+#### parse(url, false) x 1,498,810 ops/sec  
+#### parse(url, true) x  702,106 ops/sec  
 
 ### url  
-#### .parse(url, false) x 193,906 ops/sec  
-#### .parse(url, true) x 146,577 ops/sec  
+#### parse(url, false) x 186,073 ops/sec  
+#### parse(url, true) x 142,023 ops/sec  
 
 ### fast-url-parser  
-#### .parse(url, false) x 1,381,672 ops/sec  
-#### .parse(url, true) x 593,819 ops/sec  
+#### parse(url, false) x 1,379,748 ops/sec  
+#### parse(url, true) x 583,873 ops/sec  
 
 ---  
 
@@ -57,15 +55,15 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 
 #### npm  
 
-npm install @chickendinosaur/url-parser
+npm install @chickendinosaur/url-parse
 
 ## Usage
 
 ```javascript
-const UrlParser = require('@chickendinosaur/url-parser');
+const urlParse = require('@chickendinosaur/url-parse');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
-console.log(UrlParser.parse(url, true));
+console.log(urlParse(url, true));
 
 // Output
 

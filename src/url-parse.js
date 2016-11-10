@@ -40,7 +40,7 @@ function Url() {
 	this.href = null; // http://username:password@subdomain.domain.com:port/a/b/c/d/?item=1&name=joe#someplace
 }
 
-function parse(url, parseQueryString) {
+module.exports = function (url, parseQueryString) {
 	var urlObj = new Url();
 	var index = 0;
 	var indexPosition = 0;
@@ -53,7 +53,8 @@ function parse(url, parseQueryString) {
 	}
 
 	// Auth.
-	if (urlObj.protocol !== null && urlObj.slashes === true) {
+	if (urlObj.protocol !== null &&
+		urlObj.slashes === true) {
 		index = url.indexOf('@', indexPosition);
 		if (index >= 0) {
 			urlObj.auth = url.substring(indexPosition, index);
@@ -94,14 +95,20 @@ function parse(url, parseQueryString) {
 					while (queryIndexIter < queryLen) {
 						currPropChar = query.charAt(queryIndexIter);
 
-						if (currPropChar !== '=' && currPropChar !== '&' && currPropChar !== '#') {
+						if (currPropChar !== '=' &&
+							currPropChar !== '&' &&
+							currPropChar !== '#') {
 							propQueue += currPropChar;
 						}
 
 						if (currPropChar === '=') {
 							currPropName = propQueue;
 							propQueue = '';
-						} else if (currPropChar === '&' || currPropChar === '#' || queryIndexIter === queryLen - 1) {
+						} else if (
+							currPropChar === '&' ||
+							currPropChar === '#' ||
+							queryIndexIter === queryLen - 1
+						) {
 							queryParams[currPropName] = propQueue;
 							propQueue = '';
 						}
@@ -146,21 +153,4 @@ function parse(url, parseQueryString) {
 	urlObj.href = url;
 
 	return urlObj;
-}
-
-function format(url) {
-	if (url.constructor === Object) {
-		return url.protocol + '//' + url.auth + '@' + url.host + url.path + url.search + url.hash;
-	}
-
-	if (url.constructor === String) {
-		return parse(url);
-	}
-
-	throw new TypeError();
-}
-
-module.exports = {
-	parse: parse,
-	format: format
 };

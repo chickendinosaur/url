@@ -1,14 +1,14 @@
 {
-  "name": "@chickendinosaur/url-parser",
-  "version": "1.0.5",
-  "description": "URL parser to mimic node's 'url'.parse with minimal overhead and max performance.",
-  "main": "lib/url-parser.js",
+  "name": "@chickendinosaur/url-parse",
+  "version": "1.0.0",
+  "description": "URL parsing method meant to mimic node's 'url' .parse() with minimal overhead and max performance.",
+  "main": "lib/url-parse.js",
   "files": [
     "lib/"
   ],
   "scripts": {
-    "benchmark": "npm run test && npm run benchmark-url-parser && npm run benchmark-fast-url-parser && npm run benchmark-url",
-    "benchmark-url-parser": "node benchmark/url-parser.js",
+    "benchmark": "npm run test && npm run benchmark-url-parse && npm run benchmark-fast-url-parser && npm run benchmark-url",
+    "benchmark-url-parse": "node benchmark/url-parse.js",
     "benchmark-fast-url-parser": "node benchmark/fast-url-parser.js",
     "benchmark-url": "node benchmark/url.js",
     "build": "npm run clean && babel src --out-dir lib",
