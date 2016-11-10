@@ -32,7 +32,7 @@ Note: Due to dealing with fast-url-parser and 'url' having dependencies, browser
 
 ## Performance  
 
-Path used: 
+URL used: 
 ```javascript
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
