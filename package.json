@@ -13,7 +13,8 @@
     "benchmark-url": "node benchmark/url.js",
     "build": "npm run clean && babel src --out-dir lib",
     "clean": "rm -rf lib/*",
-    "prepubish": "npm run test && npm access public",
+    "prepubish": "npm run test",
+    "publish": "npm publish --access=public",
     "test": "npm run build && tape test/unit/**/*.js | tap-spec"
   },
   "author": {
