@@ -3,8 +3,15 @@
 const test = require('tape');
 const parseURL = require('../../lib/url-parse');
 const mockUrls = require('../../mocks/urls');
+const url = require('url');
 
 test('parse - full url \w query parsing', function (assert) {
+	var testURL = 'u:p@a.b.c/?';
+	console.log('url');
+	console.log(url.parse(testURL, false, true));
+	console.log('parseURL');
+	console.log(parseURL(testURL, false, true));
+
 	let urlObj = parseURL(mockUrls.full, true);
 
 	var queryObjMirror = JSON.stringify({
@@ -64,4 +71,3 @@ test('parse - no hash', function (assert) {
 
 	assert.end();
 });
-
