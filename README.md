@@ -64,7 +64,7 @@ const UrlParser = require('@chickendinosaur/url-parser');
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 var parsedURL = UrlParser.parse(url, true);
 
-// Output
+// parsedURL
 {
 	protocol: 'http:',
 	ashes: true,
