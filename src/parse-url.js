@@ -41,6 +41,17 @@ function Url() {
 	this.href = null; // http://username:password@subdomain.domain.com:port/a/b/c/d/?item=1&name=joe#someplace
 }
 
+function HostURL() {
+	this.protocol = null; // http:
+	this.auth = null; // username=password
+	this.host = null; // subdomain.domain.com:port
+	this.port = null; // 80
+	this.hostname = null;
+}
+
+var lastHostURL = '';
+var lastHostURLObj = new HostURL();
+
 module.exports = function (url, parseQueryString) {
 	var urlObj = new Url();
 
@@ -66,43 +77,74 @@ module.exports = function (url, parseQueryString) {
 		pathStartIndex = url.length;
 	}
 
+	/*
+	Left-side
+	*/
+
 	// Full host path including protocol, auth, and port.
 	var leftPath = url.substring(0, pathStartIndex);
-	// Full path including path, query, and hash.
-	var rightPath = url.substring(pathStartIndex);
 
 	// Parse left side of the url.
 	// Host side.
 	if (leftPath.length > 0) {
-		var protocolEndIndex = leftPath.indexOf(':');
+		// Check cached for host.
+		if (lastHostURL === leftPath) {
+			urlObj.protocol = lastHostURLObj.protocol;
+			urlObj.auth = lastHostURLObj.auth;
+			urlObj.host = lastHostURLObj.host;
+			urlObj.port = lastHostURLObj.port;
+			urlObj.hostname = lastHostURLObj.hostname;
+		} else {
+			// Get initial end index.
+			var protocolEndIndex = leftPath.indexOf(':');
 
-		// Has protocol.
-		if (protocolEndIndex >= 0) {
-			urlObj.protocol = leftPath.substring(0, protocolEndIndex + 1);
+			// Has protocol.
+			if (protocolEndIndex >= 0) {
+				urlObj.protocol = leftPath.substring(0, protocolEndIndex + 1);
 
-			// Increment current index cursor to index after protocol syntax.
-			if (leftPath.charAt(protocolEndIndex + 1) === '/') {
-				protocolEndIndex += 2;
-			}
+				// Increment current index cursor to index after protocol syntax.
+				if (leftPath.charAt(protocolEndIndex + 1) === '/') {
+					protocolEndIndex += 3;
+				} else {
+					protocolEndIndex += 1;
+				}
 
-			// Auth
-			// Only auth if there's a protocol which is why it's inside protocol check.
-			var authEndIndex = url.indexOf('@', protocolEndIndex);
-			if (authEndIndex >= 0) {
-				urlObj.auth = leftPath.substring(protocolEndIndex + 1, authEndIndex);
-				protocolEndIndex = authEndIndex;
+				// Auth
+				// Only auth if there's a protocol which is why it's inside protocol check.
+				var authEndIndex = url.indexOf('@', protocolEndIndex);
+				if (authEndIndex >= 0) {
+					urlObj.auth = leftPath.substring(protocolEndIndex, authEndIndex);
+					protocolEndIndex = authEndIndex + 1;
+				}
+			} else {
+				protocolEndIndex = 0;
 			}
 
 			// Host.
-			urlObj.host = leftPath.substring(protocolEndIndex + 1, pathStartIndex);
-			var portStartIndex = leftPath.indexOf(':', protocolEndIndex + 1);
+			urlObj.host = leftPath.substring(protocolEndIndex, pathStartIndex);
+			var portStartIndex = leftPath.indexOf(':', protocolEndIndex);
 			if (portStartIndex >= 0) {
 				urlObj.port = leftPath.substring(portStartIndex + 1);
 			}
 
 			urlObj.hostname = leftPath.substring(protocolEndIndex, portStartIndex >= 0 ? portStartIndex : leftPath.length);
+
+			// Update host url cache.
+			lastHostURL = leftPath;
+			lastHostURLObj.protocol = urlObj.protocol;
+			lastHostURLObj.auth = urlObj.auth;
+			lastHostURLObj.host = urlObj.host;
+			lastHostURLObj.port = urlObj.port;
+			lastHostURLObj.hostname = urlObj.hostname;
 		}
 	}
+
+	/*
+	Right-side
+	*/
+
+	// Full path including path, query, and hash.
+	var rightPath = url.substring(pathStartIndex);
 
 	// Parse right side of the url.
 	// Path side.
