@@ -39,7 +39,7 @@ Path used: http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 #### .parse(url, true) x 705,511 ops/sec  
 
 ### url  
-#### .parse(url, false) x 193,906 ops/se  
+#### .parse(url, false) x 193,906 ops/sec  
 #### .parse(url, true) x 146,577 ops/sec  
 
 ### fast-url-parser  
