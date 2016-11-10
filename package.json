@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "0.0.1",
-  "description": "",
-  "main": "lib/index.js",
+  "name": "@chickendinosaur/url-parser",
+  "version": "1.0.0",
+  "description": "URL parser to mimic node's 'url'.parse with minimal overhead and max performance.",
+  "main": "lib/url-parser.js",
   "files": [
     "lib/"
   ],
@@ -16,7 +16,11 @@
     "prepubish": "npm run test && npm access public",
     "test": "npm run build && tape test/unit/**/*.js | tap-spec"
   },
-  "author": "",
+  "author": {
+    "name": "John Pittman",
+    "email": "john@chickendinosaur.com",
+    "url": "https://github.com/chickendinosaur"
+  },
   "license": "MIT",
   "devDependencies": {
     "benchmark": "^2.1.2",
