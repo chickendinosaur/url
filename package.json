@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/parse-url",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "URL parsing method meant to mimic node's 'url' .parse() with minimal overhead and max performance.",
   "main": "lib/parse-url.js",
   "files": [
