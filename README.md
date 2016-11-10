@@ -39,8 +39,8 @@ Path used: http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 #### .parse(url, true) x 705,511 ops/sec  
 
 ### url  
-#### .parse(url, false) x 193,906 ops/sec ±0.57%  
-#### .parse(url, true) x 146,577 ops/sec ±1.03%  
+#### .parse(url, false) x 193,906 ops/se  
+#### .parse(url, true) x 146,577 ops/sec  
 
 ### fast-url-parser  
 #### .parse(url, false) x 1,381,672 ops/sec  
