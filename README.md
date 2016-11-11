@@ -1,4 +1,4 @@
-Url parsing method meant to mimic node's parse() method response object and parameters (no plan to add the slashesDenoteHost parameter) from the 'url' package. It takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. Made this to be used in browser routing solutions. I was after file size while being after to use as many characters as possible in the path params or query params and keep it as fast as possible when parsing the query string.  
+Url parsing method meant to mimic node's parse() method response object and parameters (no plan to add the slashesDenoteHost parameter) from the 'url' package. It takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. I was after file size for browser use.  
 
 ### Rules
 * Assumes the hash is at the end of the url.
@@ -11,9 +11,9 @@ Url parsing method meant to mimic node's parse() method response object and para
 
 ## Overhead  
 
-Note: Due to dealing with fast-url-parser and 'url' having dependencies, browserify was use which adds overhead to the results. However, '@chickendinosaur/parse-url' has no dependencies so I've listed both result with and without being browserified. Of course this package does not include a format() or resolve() method but those are very minimal to implement as well and will be done in seperate packages if I need them.
+Note: Due to dealing with fast-url-parser and 'url' having dependencies, browserify was use which adds overhead to the results. However, '@chickendinosaur/url-parse' has no dependencies so I've listed both result with and without being browserified. Of course this package does not include a format() or resolve() method but those are very minimal to implement as well and will be done in seperate packages if I need them.
 
-### @chickendinosaur/parse-url  
+### @chickendinosaur/url-parse  
 #### minified - 1661 bytes  
 #### minified + gzipped - 784 bytes  
 #### minified (without browserify) - 1198 bytes  
@@ -34,9 +34,11 @@ URL used:
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
 
-### @chickendinosaur/parse-url  
+### @chickendinosaur/url-parse  
 #### parse(url, false) x 1,125,002 ops/sec  
 #### parse(url, true) x  611,324 ops/sec  
+#### parse(url, false) x 1,955,869 ops/sec (inital parse + same host)  
+#### parse(url, true) x 813,404 ops/sec (inital parse + same host)  
 
 ### url  
 #### parse(url, false) x 186,073 ops/sec  
@@ -54,12 +56,12 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 
 #### npm  
 
-npm install @chickendinosaur/parse-url
+npm install @chickendinosaur/url-parse
 
 ## Usage
 
 ```javascript
-const parseURL = require('@chickendinosaur/parse-url');
+const parseURL = require('@chickendinosaur/url-parse');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 console.log(parseURL(url, true));

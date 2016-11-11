@@ -60,10 +60,14 @@ module.exports = function (url, parseQueryString) {
 	// or query that are seperation keys for parts of the hostname,
 	var pathStartIndex = url.indexOf('/');
 
-	if (pathStartIndex > 0 && url.charAt(pathStartIndex - 1) === ':') {
+	if (
+		pathStartIndex > 0 &&
+		url.charAt(pathStartIndex - 1) === ':'
+	) {
 		urlObj.slashes = true;
 		pathStartIndex = url.indexOf('/', pathStartIndex + 2);
-	} else if (pathStartIndex === 0 && url.charAt(1) === '/') {
+	} else if (pathStartIndex === 0 &&
+		url.charAt(1) === '/') {
 		urlObj.slashes = true;
 		pathStartIndex = url.indexOf('/', 3);
 	}
@@ -73,16 +77,18 @@ module.exports = function (url, parseQueryString) {
 		pathStartIndex = url.length;
 	}
 
+	/*
+	Left-side
+	*/
+
 	// Full host path including protocol, auth, and port.
 	var leftPath = url.substring(0, pathStartIndex);
-	// Full path including path, query, and hash.
-	var rightPath = url.substring(pathStartIndex);
 
 	// Parse left side of the url.
 	// Host side.
 	if (leftPath.length > 0) {
 		// Check cached for host.
-		if (true) {
+		if (lastHostURL === leftPath) {
 			urlObj.protocol = lastHostURLObj.protocol;
 			urlObj.auth = lastHostURLObj.auth;
 			urlObj.host = lastHostURLObj.host;
@@ -133,6 +139,13 @@ module.exports = function (url, parseQueryString) {
 		}
 	}
 
+	/*
+	Right-side
+	*/
+
+	// Full path including path, query, and hash.
+	var rightPath = url.substring(pathStartIndex);
+
 	// Parse right side of the url.
 	// Path side.
 	// Hash.
@@ -152,7 +165,8 @@ module.exports = function (url, parseQueryString) {
 
 		// Parse query string.
 		// Build params object.
-		if (parseQueryString === true && queryLen > 0) {
+		if (parseQueryString === true &&
+			queryLen > 0) {
 			var queryParams = {};
 			var queryIndexIter = 0;
 			var currPropChar = '';
@@ -162,14 +176,18 @@ module.exports = function (url, parseQueryString) {
 			while (queryIndexIter < queryLen) {
 				currPropChar = query.charAt(queryIndexIter);
 
-				if (currPropChar !== '=' && currPropChar !== '&') {
+				if (currPropChar !== '=' &&
+					currPropChar !== '&') {
 					propQueue += currPropChar;
 				}
 
 				if (currPropChar === '=') {
 					currPropName = propQueue;
 					propQueue = '';
-				} else if (currPropChar === '&' || queryIndexIter === queryLen - 1) {
+				} else if (
+					currPropChar === '&' ||
+					queryIndexIter === queryLen - 1
+				) {
 					queryParams[currPropName] = propQueue;
 					propQueue = '';
 				}
