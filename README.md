@@ -18,11 +18,11 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 
 ### @chickendinosaur/url  
 #### parse(url, false) x 1,869,033 ops/sec  
-parse(url, true) x 796,162 ops/sec  
+#### parse(url, true) x 796,162 ops/sec  
 
 ### @chickendinosaur/url/query-string/parse  
 #### queryStringParse(url, false) x 1,387,553 ops/sec  
-queryStringParse(url, true) x 1,164,266 ops/sec  
+#### queryStringParse(url, true) x 1,164,266 ops/sec  
 
 ---  
 
