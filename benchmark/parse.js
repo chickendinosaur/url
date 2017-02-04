@@ -21,7 +21,7 @@ suite
 	.add('parse(url, false)', function () {
 		parse(urlStr, false);
 	})
-	.add('parse(url, true)', function () {
+	.add('parse(url, true, false)', function () {
 		parse(urlStr, true, false);
 	})
 	.add('parse(url, true, true)', function () {
