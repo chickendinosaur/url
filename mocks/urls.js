@@ -6,5 +6,10 @@ module.exports = {
 	noPath: 'http://joe:smith@mail.google.com:80/?item=1&name=joe#pageLocation',
 	noProtocol: 'joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation',
 	noHash: 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe',
-	noauth: 'http://mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation'
+	noauth: 'http://mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation',
+	query: '?item=1&name=joe',
+	parsedQuery: {
+		item: '1',
+		name: 'joe'
+	}
 };

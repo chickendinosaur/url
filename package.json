@@ -1,20 +1,23 @@
 {
-  "name": "@chickendinosaur/url-parse",
+  "name": "@chickendinosaur/url",
   "version": "1.0.0",
-  "description": "URL parsing method meant to mimic node's 'url' .parse() with minimal overhead and max performance.",
-  "main": "lib/parse.js",
+  "description": "URL parsing method meant to mimic node's 'url' .parse() with less overhead and more performance.",
+  "main": "lib/index.js",
   "files": [
     "lib/"
   ],
   "scripts": {
-    "benchmark": "npm run test && npm run benchmark-parse-url && npm run benchmark-fast-url-parser && npm run benchmark-url",
-    "benchmark-parse-url": "node benchmark/url-parse.js",
-    "benchmark-fast-url-parser": "node benchmark/fast-url-parser.js",
-    "benchmark-url": "node benchmark/url.js",
-    "build": "npm run clean && cp -f src/** lib/",
+    "benchmark": "npm run benchmark-query-string-parse && npm run benchmark-parse",
+    "benchmark-parse": "npm run test-parse && node benchmark/parse.js",
+    "benchmark-query-string-parse": "npm run test-query-string-parse && node benchmark/query-string/parse.benchmark.js",
+    "build": "npm run clean && cp -rf src/* lib/",
+    "build-parse": "cp -f src/parse.js lib/parse.js",
+    "build-query-string-parse": "cp -f src/query-string/parse.js lib/query-string/parse.js",
     "clean": "rm -rf lib/*",
     "prepublish": "npm run test",
-    "test": "npm run build && tape test/unit/**/*.js | tap-spec"
+    "test": "npm run build && tap test/**/*.tap.js --reporter spec",
+    "test-parse": "npm run build-parse && tap test/parse.tap.js --reporter spec",
+    "test-query-string-parse": "npm run build-query-string-parse && tap test/query-string/parse.tap.js --reporter spec"
   },
   "author": {
     "name": "John Pittman",
@@ -24,9 +27,23 @@
   "license": "MIT",
   "devDependencies": {
     "benchmark": "^2.1.2",
-    "fast-url-parser": "^1.1.3",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.0",
-    "url": "^0.11.0"
+    "tap": "^10.0.2"
+  },
+  "keywords": [
+    "parsing",
+    "querystring",
+    "url"
+  ],
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chickendinosaur/url.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chickendinosaur/url/issues"
+  },
+  "homepage": "https://github.com/chickendinosaur/url#readme",
+  "generator-module": {
+    "global": false
   }
 }

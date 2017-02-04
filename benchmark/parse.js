@@ -2,7 +2,7 @@ require('lodash');
 Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
-const UrlParser = require('fast-url-parser');
+const parse = require('../lib/parse');
 const mockURLs = require('../mocks/urls');
 
 /*
@@ -19,10 +19,13 @@ function teardown() {}
 
 suite
 	.add('parse(url, false)', function () {
-		UrlParser.parse(urlStr, false);
+		parse(urlStr, false);
 	})
 	.add('parse(url, true)', function () {
-		UrlParser.parse(urlStr, true);
+		parse(urlStr, true, false);
+	})
+	.add('parse(url, true, true)', function () {
+		parse(urlStr, true, true);
 	})
 	.on('cycle', function (event) {
 		console.log(String(event.target));

@@ -9,24 +9,6 @@ Url parsing method meant to mimic node's parse() method response object and para
 
 # Specs  
 
-## Overhead  
-
-Note: Due to dealing with fast-url-parser and 'url' having dependencies, browserify was use which adds overhead to the results. However, '@chickendinosaur/url-parse' has no dependencies so I've listed both result with and without being browserified. Of course this package does not include a format() or resolve() method but those are very minimal to implement as well and will be done in seperate packages if I need them.
-
-### @chickendinosaur/url-parse  
-#### minified - 1661 bytes  
-#### minified + gzipped - 784 bytes  
-#### minified (without browserify) - 1198 bytes  
-#### minified + gzipped (without browserify) - 561 bytes  
-
-### url  
-#### minified - 12685 bytes  
-#### minified + gzipped - 4979 bytes  
-
-### fast-url-parser  
-#### minified - 15783 bytes  
-#### minified + gzipped - 5767 bytes  
-
 ## Performance  
 
 URL used: 
@@ -34,19 +16,13 @@ URL used:
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
 
-### @chickendinosaur/url-parse  
-#### parse(url, false) x 1,125,002 ops/sec  
-#### parse(url, true) x  611,324 ops/sec  
-#### parse(url, false) x 1,955,869 ops/sec (inital parse + same host)  
-#### parse(url, true) x 813,404 ops/sec (inital parse + same host)  
+### @chickendinosaur/url  
+#### parse(url, false) x 1,869,033 ops/sec  
+parse(url, true) x 796,162 ops/sec  
 
-### url  
-#### parse(url, false) x 186,073 ops/sec  
-#### parse(url, true) x 142,023 ops/sec  
-
-### fast-url-parser  
-#### parse(url, false) x 1,379,748 ops/sec  
-#### parse(url, true) x 583,873 ops/sec  
+### @chickendinosaur/url/query-string/parse  
+#### queryStringParse(url, false) x 1,387,553 ops/sec  
+queryStringParse(url, true) x 1,164,266 ops/sec  
 
 ---  
 
@@ -56,15 +32,17 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 
 #### npm  
 
-npm install @chickendinosaur/url-parse
+npm install @chickendinosaur/url
 
 ## Usage
 
+### url.parse
+
 ```javascript
-const parseURL = require('@chickendinosaur/url-parse');
+const parseURL = require('@chickendinosaur/url');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
-console.log(parseURL(url, true));
+console.log(parseURL(url, true, true));
 
 // Output
 
@@ -85,6 +63,25 @@ console.log(parseURL(url, true));
 }
 */
 ```
+### url.querystring.parse
+
+```javascript
+const queryStringParse = require('@chickendinosaur/url/query-string/parse');
+// or const queryStringParse = require('@chickendinosaur/url/').querystring.parse;
+
+var url = '?item=1&name=joe%20r';
+console.log(queryStringParse(queryStringParse, true));
+
+// Output
+
+/*
+{
+	name: 'joe r',
+	item: '1'
+}
+*/
+```
+
 ---  
 
 # Development  

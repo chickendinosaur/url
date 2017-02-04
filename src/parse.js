@@ -25,6 +25,8 @@ SOFTWARE.
 
 'use strict';
 
+const queryStringParse = require('./query-string/parse');
+
 function Url() {
 	this.protocol = null; // http:
 	this.slashes = false;
@@ -52,7 +54,11 @@ function HostURL() {
 var lastHostURL = '';
 var lastHostURLObj = new HostURL();
 
-module.exports = function (url, parseQueryString) {
+module.exports = function (url, parseQueryString, decode) {
+	if (decode !== false) {
+		decode = true;
+	}
+
 	var urlObj = new Url();
 
 	// Need to find the path and separate the path from the host name first
@@ -167,35 +173,7 @@ module.exports = function (url, parseQueryString) {
 		// Build params object.
 		if (parseQueryString === true &&
 			queryLen > 0) {
-			var queryParams = {};
-			var queryIndexIter = 0;
-			var currPropChar = '';
-			var propQueue = '';
-			var currPropName;
-
-			while (queryIndexIter < queryLen) {
-				currPropChar = query.charAt(queryIndexIter);
-
-				if (currPropChar !== '=' &&
-					currPropChar !== '&') {
-					propQueue += currPropChar;
-				}
-
-				if (currPropChar === '=') {
-					currPropName = propQueue;
-					propQueue = '';
-				} else if (
-					currPropChar === '&' ||
-					queryIndexIter === queryLen - 1
-				) {
-					queryParams[currPropName] = propQueue;
-					propQueue = '';
-				}
-
-				++queryIndexIter;
-			}
-
-			urlObj.query = queryParams;
+			urlObj.query = queryStringParse(query, decode);
 		} else {
 			// Store query string as normal.
 			urlObj.query = query;
@@ -210,7 +188,19 @@ module.exports = function (url, parseQueryString) {
 	}
 
 	// Path
-	urlObj.path = urlObj.pathname + urlObj.search || '';
+	urlObj.path = '';
+
+	if (urlObj.pathname !== null) {
+		urlObj.path = urlObj.pathname;
+	}
+
+	if (urlObj.search !== null) {
+		urlObj.path += urlObj.search;
+	}
+
+	if (urlObj.path === '') {
+		urlObj.path = null;
+	}
 
 	urlObj.href = url;
 
