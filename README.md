@@ -11,7 +11,7 @@ Url parsing method meant to mimic node's parse() method response object and para
 
 ## Performance  
 
-URL used: 
+Test used: 
 ```javascript
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
@@ -21,9 +21,14 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 #### parse(url, true, false) x 704,786 ops/sec  
 #### parse(url, true, true) x 643,198 ops/sec  
 
-### @chickendinosaur/url/query-string/parse  
-#### queryStringParse(url, false) x 1,387,553 ops/sec  
-#### queryStringParse(url, true) x 1,164,266 ops/sec  
+Test used: 
+```javascript
+var queryString = '?item=1&name=joe';
+```
+
+### @chickendinosaur/queryString/query-string/parse  
+#### queryStringParse(queryString, false) x 1,387,553 ops/sec  
+#### queryStringParse(queryString, true) x 1,164,266 ops/sec  
 
 ---  
 
