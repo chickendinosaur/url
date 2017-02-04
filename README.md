@@ -26,7 +26,7 @@ Test used:
 var queryString = '?item=1&name=joe';
 ```
 
-### @chickendinosaur/queryString/query-string/parse  
+### @chickendinosaur/url/query-string/parse  
 #### queryStringParse(queryString, false) x 1,387,553 ops/sec  
 #### queryStringParse(queryString, true) x 1,164,266 ops/sec  
 
