@@ -28,5 +28,11 @@ SOFTWARE.
 const formatQueryObj = require('../query-string/format');
 
 module.exports = function (queryParamsObj, encode) {
-	return '?' + formatQueryObj(queryParamsObj, encode);
+	var result = formatQueryObj(queryParamsObj, encode);
+
+	if (result !== '') {
+		result = '?' + result;
+	}
+
+	return result;
 };

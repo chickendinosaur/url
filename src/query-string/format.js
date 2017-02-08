@@ -43,11 +43,12 @@ module.exports = function (queryStringObj, encode) {
 
 			i++;
 		}
+
+		if (encode === true) {
+			queryString = encodeURI(queryString);
+		}
 	}
 
-	if (encode === true) {
-		queryString = encodeURI(queryString);
-	}
 
 	return queryString;
 };
