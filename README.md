@@ -1,4 +1,4 @@
-Url parsing.  
+Url object and utilities.  
 
 [Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html)
 
