@@ -90,7 +90,7 @@ var urlObject = {
 	this.port = 80,
 	this.hostname = 'github.com',
 	this.hash = 'readme',
-	this.query = 'one=1',
+	this.query = 'one=1', // or { one : 1 }
 	this.pathname = '/chickendinosaur'
 };
 console.log(formatURL(urlObject));

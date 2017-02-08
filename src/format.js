@@ -25,6 +25,8 @@ SOFTWARE.
 
 'use strict';
 
+const formatQueryObj = require('./query-string/format');
+
 module.exports = function (urlObject) {
 	var result = '';
 
@@ -61,7 +63,11 @@ module.exports = function (urlObject) {
 	}
 
 	if (urlObject.query) {
-		result += '?' + urlObject.query;
+		if (urlObject.query.construtor === Object) {
+			result += '?' + formatQueryObj(urlObject.query);
+		} else {
+			result += '?' + urlObject.query;
+		}
 	}
 
 	if (urlObject.hash) {
