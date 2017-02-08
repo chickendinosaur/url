@@ -85,13 +85,13 @@ console.log(parseURL(url, true, true));
 const formatURL = require('@chickendinosaur/url').format;
 
 var urlObject = {
-	this.protocol = 'http',
-	this.auth = 'a:b',
-	this.port = 80,
-	this.hostname = 'github.com',
-	this.hash = 'readme',
-	this.query = 'one=1', // or { one : 1 }
-	this.pathname = '/chickendinosaur'
+	protocol = 'http',
+	auth = 'a:b',
+	port = 80,
+	hostname = 'github.com',
+	hash = 'readme',
+	query = 'one=1', // or { one : 1 }
+	pathname = '/chickendinosaur'
 };
 console.log(formatURL(urlObject));
 
