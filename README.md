@@ -1,7 +1,4 @@
-Url parsing method meant to mimic node's parse() method response object and parameters (no plan to add the slashesDenoteHost parameter) from the 'url' package. It takes a very minimalist approach to supply the least amount of overhead, garbage, and performance. I was after file size for browser use.  
-
-### Rules
-* Assumes the hash is at the end of the url.
+Url parsing helpers  
 
 [Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html)
 
@@ -11,7 +8,7 @@ Url parsing method meant to mimic node's parse() method response object and para
 
 ## Performance  
 
-Test used: 
+Test used:  
 ```javascript
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
@@ -21,14 +18,26 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 #### parse(url, true, false) x 704,786 ops/sec  
 #### parse(url, true, true) x 643,198 ops/sec  
 
-Test used: 
+Test used:  
 ```javascript
-var queryString = '?item=1&name=joe';
+var queryString = 'item=1&name=joe';
 ```
 
 ### @chickendinosaur/url/query-string/parse  
-#### queryStringParse(queryString, false) x 1,387,553 ops/sec  
-#### queryStringParse(queryString, true) x 1,164,266 ops/sec  
+#### parse(queryString, false) x 1,387,553 ops/sec  
+#### parse(queryString, true) x 1,164,266 ops/sec  
+
+Test used:  
+```javascript
+var parsedQuery = {
+	item: '1',
+	name: 'joe'
+};
+```
+
+### @chickendinosaur/url/query-string/format  
+#### format(parsedQuery, false) x 4,943,729 ops/sec  
+#### format(parsedQuery, true) x 1,453,396 ops/sec  
 
 ---  
 
@@ -42,10 +51,10 @@ npm install @chickendinosaur/url
 
 ## Usage
 
-### url.parse
+### @chickendinosaur/url/parse
 
 ```javascript
-const parseURL = require('@chickendinosaur/url');
+const parseURL = require('@chickendinosaur/url').parse;
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 console.log(parseURL(url, true, true));
@@ -69,13 +78,36 @@ console.log(parseURL(url, true, true));
 }
 */
 ```
-### url.querystring.parse
+
+### @chickendinosaur/url/format
+
+```javascript
+const formatURL = require('@chickendinosaur/url').format;
+
+var urlObject = {
+	this.protocol = 'http',
+	this.auth = 'a:b',
+	this.port = 80,
+	this.hostname = 'github.com',
+	this.hash = 'readme',
+	this.query = 'one=1',
+	this.pathname = '/chickendinosaur'
+};
+console.log(formatURL(urlObject));
+
+// Output
+
+/*
+'http://a:b@github.com:80/chickendinosaur?one=1#readme'
+*/
+```
+
+### @chickendinosaur/url/querystring/parse
 
 ```javascript
 const queryStringParse = require('@chickendinosaur/url/query-string/parse');
-// or const queryStringParse = require('@chickendinosaur/url/').querystring.parse;
 
-var url = '?item=1&name=joe%20r';
+var url = 'item=1&name=joe%20r';
 console.log(queryStringParse(queryStringParse, true));
 
 // Output
@@ -87,6 +119,35 @@ console.log(queryStringParse(queryStringParse, true));
 }
 */
 ```
+
+### @chickendinosaur/url/querystring/format
+
+```javascript
+const format = require('@chickendinosaur/url/query-string/format');
+
+var parsedQuery = {
+	name: 'joe r',
+	item: '1'
+};
+console.log(queryStringParse(parsedQuery, true));
+
+// Output
+
+/*
+{
+	name: 'joe r',
+	item: '1'
+}
+*/
+```
+
+### @chickendinosaur/url/search-string/parse
+
+Same as @chickendinosaur/url/query-string/parse but checks for and removes a '?' from the beginning of the input string.
+
+### @chickendinosaur/url/search-string/format
+
+Same as @chickendinosaur/url/query-string/format but adds a '?' to the beginning of the output string.
 
 ---  
 

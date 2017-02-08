@@ -1,23 +1,20 @@
 {
   "name": "@chickendinosaur/url",
   "version": "1.0.0",
-  "description": "URL parsing method meant to mimic node's 'url' .parse() with less overhead and more performance.",
-  "main": "lib/index.js",
+  "description": "URL parsing helpers.",
+  "main": "lib/url.js",
   "files": [
     "lib/"
   ],
   "scripts": {
-    "benchmark": "npm run benchmark-query-string-parse && npm run benchmark-parse",
-    "benchmark-parse": "npm run test-parse && node benchmark/parse.js",
-    "benchmark-query-string-parse": "npm run test-query-string-parse && node benchmark/query-string/parse.benchmark.js",
+    "benchmark": "npm run test && node benchmark/parse.js && node benchmark/query-string/parse.js && node benchmark/query-string/format.js",
+    "benchmark-parse": "npm run test && node benchmark/parse.js",
+    "benchmark-query-string-parse": "npm run test && node benchmark/query-string/parse.js",
+    "benchmark-query-string-stringify": "npm run test && node benchmark/query-string/stringify.js",
     "build": "npm run clean && cp -rf src/* lib/",
-    "build-parse": "cp -f src/parse.js lib/parse.js",
-    "build-query-string-parse": "cp -f src/query-string/parse.js lib/query-string/parse.js",
     "clean": "rm -rf lib/*",
     "prepublish": "npm run test",
-    "test": "npm run build && tap test/**/*.tap.js --reporter spec",
-    "test-parse": "npm run build-parse && tap test/parse.tap.js --reporter spec",
-    "test-query-string-parse": "npm run build-query-string-parse && tap test/query-string/parse.tap.js --reporter spec"
+    "test": "npm run build && tap test/**/*.tap.js --reporter spec"
   },
   "author": {
     "name": "John Pittman",

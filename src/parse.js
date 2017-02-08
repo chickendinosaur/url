@@ -26,22 +26,7 @@ SOFTWARE.
 'use strict';
 
 const queryStringParse = require('./query-string/parse');
-
-function Url() {
-	this.protocol = null; // http:
-	this.slashes = false;
-	this.auth = null; // username=password
-	this.host = null; // subdomain.domain.com:port
-	this.port = null; // 80
-	this.hostname = null;
-	this.hash = null; // someplace
-	this.search = null; // ?item=1&name=joe#someplace
-	this.query = null; // item=1&name=joe#someplace
-	this.pathname = null; // /a/b/c/
-	this.params = null; // []
-	this.path = null;
-	this.href = null; // http://username:password@subdomain.domain.com:port/a/b/c/d/?item=1&name=joe#someplace
-}
+const URL = require('./url');
 
 function HostURL() {
 	this.protocol = null; // http:
@@ -59,7 +44,7 @@ module.exports = function (url, parseQueryString, decode) {
 		decode = true;
 	}
 
-	var urlObj = new Url();
+	var urlObj = new URL();
 
 	// Need to find the path and separate the path from the host name first
 	// to avoid any conflicts with obscure characters existing in parts of the path

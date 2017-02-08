@@ -30,10 +30,6 @@ module.exports = function (queryString, decode) {
 		decode = true;
 	}
 
-	if (queryString.charAt(0) === '?') {
-		queryString = queryString.substring(1);
-	}
-
 	// Convert html encoded characters.
 	if (decode === true) {
 		queryString = decodeURIComponent(queryString);

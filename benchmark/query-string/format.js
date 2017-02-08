@@ -2,14 +2,12 @@ require('lodash');
 Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
-const parse = require('../lib/parse');
-const mockURLs = require('../mocks/urls');
+const format = require('../../lib/query-string/format');
+const parsedQuery = require('../../mocks/parsedQuery');
 
 /*
 Setup.
 */
-
-var urlStr = mockURLs.full;
 
 /*
 Teardown.
@@ -20,18 +18,15 @@ function teardown() {}
 console.log('');
 console.log('Benchmark');
 console.log('');
-console.log('benchmark/parse.js');
+console.log('benchmark/query-string/format.js');
 console.log('');
 
 suite
-	.add('parse(url, false)', function () {
-		parse(urlStr, false);
+	.add('format(parsedQuery, false)', function () {
+		format(parsedQuery, false);
 	})
-	.add('parse(url, true, false)', function () {
-		parse(urlStr, true, false);
-	})
-	.add('parse(url, true, true)', function () {
-		parse(urlStr, true, true);
+	.add('format(parsedQuery, true)', function () {
+		format(parsedQuery, true);
 	})
 	.on('cycle', function (event) {
 		console.log(String(event.target));

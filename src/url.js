@@ -25,42 +25,25 @@ SOFTWARE.
 
 'use strict';
 
-module.exports = function (queryString, decode) {
-	if (decode !== false) {
-		decode = true;
-	}
+const parseURL = require('./parse');
+const formatURLObject = require('./format');
 
-	// Convert html encoded characters.
-	if (decode === true) {
-		queryString = decodeURIComponent(queryString);
-	}
+function URL() {
+	this.protocol = null; // http:
+	this.slashes = false;
+	this.auth = null; // username=password
+	this.host = null; // subdomain.domain.com:port
+	this.port = null; // 80
+	this.hostname = null;
+	this.hash = null; // someplace
+	this.search = null; // ?item=1&name=joe#someplace
+	this.query = null; // item=1&name=joe#someplace or {}
+	this.pathname = null; // /a/b/c/
+	this.path = null;
+	this.href = null; // http://username:password@subdomain.domain.com:port/a/b/c/d/?item=1&name=joe#someplace
+}
 
-	var queryParams = {};
-	var queryIndexIter = 0;
-	var queryLen = queryString.length;
-	var currPropChar;
-	var propQueue = '';
-	var currPropName;
+URL.parse = parseURL;
+URL.format = formatURLObject;
 
-	while (queryIndexIter < queryLen) {
-		currPropChar = queryString.charAt(queryIndexIter);
-
-		if (currPropChar !== '=' &&
-			currPropChar !== '&') {
-			propQueue += currPropChar;
-		}
-
-		if (currPropChar === '=') {
-			currPropName = propQueue;
-			propQueue = '';
-		} else if (currPropChar === '&' ||
-			queryIndexIter === queryLen - 1) {
-			queryParams[currPropName] = propQueue;
-			propQueue = '';
-		}
-
-		++queryIndexIter;
-	}
-
-	return queryParams;
-};
+module.exports = URL;

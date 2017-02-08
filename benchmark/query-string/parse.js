@@ -20,14 +20,14 @@ function teardown() {}
 console.log('');
 console.log('Benchmark');
 console.log('');
-console.log('benchmark/query-string/parse.benchmark.js');
+console.log('benchmark/query-string/parse.js');
 console.log('');
 
 suite
-	.add('queryStringParse(url, false)', function () {
+	.add('parse(url, false)', function () {
 		queryStringParse(queryStr, false);
 	})
-	.add('queryStringParse(url, true)', function () {
+	.add('parse(url, true)', function () {
 		queryStringParse(queryStr, true);
 	})
 	.on('cycle', function (event) {
