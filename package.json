@@ -1,7 +1,7 @@
 {
   "name": "@chickendinosaur/url",
   "version": "1.0.0",
-  "description": "URL parsing helpers.",
+  "description": "URL parsing.",
   "main": "lib/url.js",
   "files": [
     "lib/"

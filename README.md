@@ -1,4 +1,4 @@
-Url parsing helpers  
+Url parsing.  
 
 [Node's 'url' API reference](https://nodejs.org/docs/latest/api/url.html)
 
@@ -8,11 +8,6 @@ Url parsing helpers
 
 ## Performance  
 
-Test used:  
-```javascript
-var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
-```
-
 ### @chickendinosaur/url  
 #### parse(url, false) x 1,869,033 ops/sec  
 #### parse(url, true, false) x 704,786 ops/sec  
@@ -20,7 +15,7 @@ var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocati
 
 Test used:  
 ```javascript
-var queryString = 'item=1&name=joe';
+var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
 
 ### @chickendinosaur/url/query-string/parse  
@@ -29,15 +24,20 @@ var queryString = 'item=1&name=joe';
 
 Test used:  
 ```javascript
-var parsedQuery = {
-	item: '1',
-	name: 'joe'
-};
+var queryString = 'item=1&name=joe';
 ```
 
 ### @chickendinosaur/url/query-string/format  
 #### format(parsedQuery, false) x 4,943,729 ops/sec  
 #### format(parsedQuery, true) x 1,453,396 ops/sec  
+
+Test used:  
+```javascript
+var parsedQuery = {
+	item: '1',
+	name: 'joe'
+};
+```
 
 ---  
 
