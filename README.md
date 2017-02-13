@@ -54,7 +54,7 @@ npm install @chickendinosaur/url
 ### @chickendinosaur/url/parse
 
 ```javascript
-const parseURL = require('@chickendinosaur/url').parse;
+const parseURL = require('@chickendinosaur/url/parse');
 
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 console.log(parseURL(url, true, true));
@@ -82,17 +82,19 @@ console.log(parseURL(url, true, true));
 ### @chickendinosaur/url/format
 
 ```javascript
-const formatURL = require('@chickendinosaur/url').format;
+const formatURL = require('@chickendinosaur/url/format');
+const URL = require('@chickendinosaur/url');
 
-var urlObject = {
-	protocol: 'http:',
-	auth: 'a:b',
-	port: 80,
-	hostname: 'github.com',
-	hash: 'readme',
-	query: 'one=1', // or { one: 1 }
-	pathname: '/chickendinosaur'
-};
+var urlObject = new URL();
+
+urlObject.protocol = 'http:';
+urlObject.auth = 'a:b';
+urlObject.port = 80;
+urlObject.hostname = 'github.com';
+urlObject.hash = 'readme';
+urlObject.query = 'one=1'; // or { one: 1 }
+urlObject.pathname = '/chickendinosaur';
+
 console.log(formatURL(urlObject));
 
 // Output
