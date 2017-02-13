@@ -25,7 +25,7 @@ SOFTWARE.
 
 'use strict';
 
-const formatQueryObj = require('./query-string/format');
+const formatQueryObj = require('./query/format');
 
 module.exports = function (urlObject) {
 	var result = '';

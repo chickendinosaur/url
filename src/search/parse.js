@@ -25,20 +25,12 @@ SOFTWARE.
 
 'use strict';
 
-const formatQueryObj = require('../query-string/format');
+const parseQueryString = require('../query/parse');
 
-/*
-@module search-string/format
-@param {Object} queryObj
-@param {Boolean} encode - If set to true the output will be formatted into a suitable HTML encoded string.
-@return {String}
-*/
-module.exports = function (queryObj, encode) {
-	var result = formatQueryObj(queryObj, encode);
-
-	if (result !== '') {
-		result = '?' + result;
+module.exports = function (queryString, decode) {
+	if (queryString.charAt(0) === '?') {
+		queryString = queryString.substring(1);
 	}
 
-	return result;
+	return parseQueryString(queryString, decode);
 };

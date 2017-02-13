@@ -6,7 +6,7 @@ const beforeEach = tap.beforeEach;
 const afterEach = tap.afterEach;
 const teardown = tap.teardown;
 
-const format = require('../../lib/search-string/format');
+const format = require('../../lib/search/format');
 const parsedQuery = require('../../mocks/parsedQuery');
 const mocks = require('../../mocks/urls');
 

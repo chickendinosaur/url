@@ -18,7 +18,7 @@ Test used:
 var url = 'http://joe:smith@mail.google.com:80/a/b/c/?item=1&name=joe#pageLocation';
 ```
 
-### @chickendinosaur/url/query-string/parse  
+### @chickendinosaur/url/query/parse  
 #### parse(queryString, false) x 1,387,553 ops/sec  
 #### parse(queryString, true) x 1,164,266 ops/sec  
 
@@ -27,7 +27,7 @@ Test used:
 var queryString = 'item=1&name=joe';
 ```
 
-### @chickendinosaur/url/query-string/format  
+### @chickendinosaur/url/query/format  
 #### format(parsedQuery, false) x 4,943,729 ops/sec  
 #### format(parsedQuery, true) x 1,453,396 ops/sec  
 
@@ -105,7 +105,7 @@ console.log(formatURL(urlObject));
 ### @chickendinosaur/url/querystring/parse
 
 ```javascript
-const queryStringParse = require('@chickendinosaur/url/query-string/parse');
+const queryStringParse = require('@chickendinosaur/url/query/parse');
 
 var url = 'item=1&name=joe%20r';
 console.log(queryStringParse(queryStringParse, true));
@@ -123,7 +123,7 @@ console.log(queryStringParse(queryStringParse, true));
 ### @chickendinosaur/url/querystring/format
 
 ```javascript
-const format = require('@chickendinosaur/url/query-string/format');
+const format = require('@chickendinosaur/url/query/format');
 
 var parsedQuery = {
 	name: 'joe r',
@@ -141,13 +141,13 @@ console.log(queryStringParse(parsedQuery, true));
 */
 ```
 
-### @chickendinosaur/url/search-string/parse
+### @chickendinosaur/url/search/parse
 
-Same as @chickendinosaur/url/query-string/parse but checks for and removes a '?' from the beginning of the input string.
+Same as @chickendinosaur/url/query/parse but checks for and removes a '?' from the beginning of the input string.
 
-### @chickendinosaur/url/search-string/format
+### @chickendinosaur/url/search/format
 
-Same as @chickendinosaur/url/query-string/format but adds a '?' to the beginning of the output string.
+Same as @chickendinosaur/url/query/format but adds a '?' to the beginning of the output string.
 
 ---  
 

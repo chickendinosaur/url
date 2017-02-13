@@ -25,7 +25,7 @@ SOFTWARE.
 
 'use strict';
 
-const queryStringParse = require('./query-string/parse');
+const queryStringParse = require('./query/parse');
 const URL = require('./url');
 
 function HostURL() {

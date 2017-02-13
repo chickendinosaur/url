@@ -2,7 +2,7 @@ require('lodash');
 Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
-const queryStringParse = require('../../lib/query-string/parse');
+const queryStringParse = require('../../lib/query/parse');
 const mockURLs = require('../../mocks/urls');
 
 /*
@@ -20,7 +20,7 @@ function teardown() {}
 console.log('');
 console.log('Benchmark');
 console.log('');
-console.log('benchmark/query-string/parse.js');
+console.log('benchmark/query/parse.js');
 console.log('');
 
 suite

@@ -6,7 +6,7 @@ const beforeEach = tap.beforeEach;
 const afterEach = tap.afterEach;
 const teardown = tap.teardown;
 
-const parseQueryString = require('../../lib/query-string/parse');
+const format = require('../../lib/query/format');
 const parsedQuery = require('../../mocks/parsedQuery');
 const mocks = require('../../mocks/urls');
 
@@ -27,11 +27,10 @@ afterEach(function (done) {
 // Run the supplied function when t.end() is called, or when the plan is met.
 teardown(function () {});
 
-test('parse(queryString, true)', {
+test('format(queryString, true)', {
 	todo: false
 }, function (t) {
-	let queryParams = parseQueryString(mocks.query, false);
-	t.equal(parsedQuery.name, queryParams.name, 'param-transfered');
-	t.equal(parsedQuery.item, queryParams.item, 'param-transfered');
+	let queryString = format(parsedQuery, true);
+	t.equal(queryString, mocks.query, 'Generate query string from object literal.');
 	t.end();
 });
