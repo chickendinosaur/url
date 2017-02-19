@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/url",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "URL object and utilities.",
   "main": "url.js",
   "files": [
