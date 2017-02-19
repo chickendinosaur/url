@@ -10,9 +10,8 @@
     "benchmark": "tape src/**/*.benchmark.js",
     "build": "npm run clean && babel src -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
     "clean": "rm -rf lib",
-    "deploy": "npm run build && npm publish lib/",
-    "prepublish": "npm run test",
-    "test": "tape src/**/*.test.js"
+    "deploy": "npm run test && npm run build && npm publish lib/",
+    "test": "tape src/**/*.test.js | tap-spec"
   },
   "author": {
     "name": "John Pittman",
