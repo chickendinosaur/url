@@ -32,10 +32,6 @@ SOFTWARE.
 @return {String}
 */
 module.exports = function (queryObj, encode) {
-	if (encode !== false) {
-		encode = true;
-	}
-
 	var queryString = '';
 	var keys = Object.keys(queryObj);
 	var n = keys.length;
@@ -50,7 +46,7 @@ module.exports = function (queryObj, encode) {
 			i++;
 		}
 
-		if (encode === true) {
+		if (encode !== false) {
 			queryString = encodeURI(queryString);
 		}
 	}
