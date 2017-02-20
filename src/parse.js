@@ -163,10 +163,8 @@ module.exports = function (url, parseQueryString, decode) {
 			// Store query string as normal.
 			urlObj.query = query;
 		}
-	}
 
-	// Pathname.
-	if (queryIndex >= 0) {
+		// Pathname.
 		urlObj.pathname = rightPath.substring(0, queryIndex);
 	} else {
 		urlObj.pathname = rightPath.substring(0);

@@ -18,9 +18,7 @@ const parsedQuery = require('../../mocks/parsedQuery');
 Benchmark
 */
 
-console.log();
 console.log('url/query/format');
-console.log();
 
 suite
 	.add('format(parsedQuery, false)', function () {

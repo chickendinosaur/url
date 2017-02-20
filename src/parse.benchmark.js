@@ -20,9 +20,7 @@ var urlStr = mockURLs.full;
 Benchmark
 */
 
-console.log();
 console.log('url/parse');
-console.log();
 
 suite
 	.add('parse(url, false)', function () {

@@ -18,9 +18,7 @@ const queryStr = require('../../mocks/urls').query;
 Benchmark
 */
 
-console.log();
 console.log('url/query/parse');
-console.log();
 
 suite
     .add('parse(url, false)', function () {
