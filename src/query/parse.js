@@ -26,12 +26,8 @@ SOFTWARE.
 'use strict';
 
 module.exports = function (queryString, decode) {
-	if (decode !== false) {
-		decode = true;
-	}
-
 	// Convert html encoded characters.
-	if (decode === true) {
+	if (decode !== false) {
 		queryString = decodeURIComponent(queryString);
 	}
 

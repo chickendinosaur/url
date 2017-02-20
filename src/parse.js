@@ -40,10 +40,6 @@ var lastHostURL = '';
 var lastHostURLObj = new HostURL();
 
 module.exports = function (url, parseQueryString, decode) {
-	if (decode !== false) {
-		decode = true;
-	}
-
 	var urlObj = new URL();
 
 	// Need to find the path and separate the path from the host name first
